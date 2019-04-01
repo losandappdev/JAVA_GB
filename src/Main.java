@@ -38,8 +38,9 @@ public class Main {
         return a + b > 10 && a + b < 20;
     }
     static void positiveOrNegative(int number){
-        if (number < 0) System.out.println("Negative");
-        else System.out.println("Positive");
+           System.out.println("You number is " + ((number >= 0)? "positive": "negative") + "!");
+         /*if (number < 0) System.out.println("Negative");
+        else System.out.println("Positive");*/
     }
     static void greeting(String name){
         System.out.println("Hello, " + name + '!');
