@@ -1,5 +1,6 @@
 package lesson_2;
 
+import java.lang.annotation.ElementType;
 import java.sql.Array;
 import java.util.Arrays;
 
@@ -9,12 +10,7 @@ public class Task_2 {
         replasement0by1(new int[]{0, 1, 0, 1, 0, 1});
         replasement0by1(new  int[]{1,1,0,0,1,0,1,1,0,0});
 
-
-        int[] arr8 = new int[8];
-        for (int i = 0; i < arr8.length ; i++) {
-            arr8[i] = 3*i;
-        }
-        System.out.println(Arrays.toString(arr8));
+        arrEx();
 
         numberLess6mul2(new int[]{1,5,3,2,11,4,5,2,4,8,9,1});
 
@@ -35,6 +31,13 @@ public class Task_2 {
         System.out.println(Arrays.toString(arr));
     }
 
+    static  void arrEx(){
+    int[] arr8 = new int[8];
+        for(int i = 0; i < arr8.length; i++) {
+        arr8[i] = 3*i;
+        }
+        System.out.println(Arrays.toString(arr8));}
+
     static void numberLess6mul2(int[] arr){
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (arr[i] < 6)? arr[i] * 2: arr[i];
@@ -53,6 +56,14 @@ public class Task_2 {
                 }
                  System.out.println(Arrays.toString(sqareArr[i]));
             }
+    }
+
+    static void crossFill(int[][] arr){
+        int str, bkw;
+        for(str = 0, bkw = arr.length - 1; str < arr.length; str++, bkw--){
+            arr[str][bkw] = 1;
+            arr[str][str] = 1;
+        }
     }
 
     static void arrayMaxMin(int size){
@@ -79,7 +90,7 @@ public class Task_2 {
     static boolean checkBalannse(int[] arrCheck){
         int rsumm = 0, lsumm = 0;  // Сумма правых и левых элементов.
         boolean result = false;
-        for(int x:  arrCheck)
+        for(int  x :  arrCheck)
             rsumm +=x;
 
        for (int i = 0; i < arrCheck.length; i++) {
@@ -93,7 +104,43 @@ public class Task_2 {
 
     }
 
+
+
+
+    static void arrayShift(int[] arr, int n){
+        boolean flag;
+        if (n < 0){
+            flag = true;
+            n = -n;
+        }
+            else {
+                flag = false;
+            }
+        int lastIndex = arr.length - 1;
+
+        for (int i = 0; i < n; i++) {
+            int buffer = 0;
+            if (flag) {
+                buffer = arr[0];
+            }
+                else {
+                    buffer = lastIndex;
+            }
+
+            for (int j = 0; j < lastIndex; j++) {
+                if (flag){
+                    arr[j] = arr[j+1];
+                }
+                    else {
+                        arr[lastIndex-j] = arr[lastIndex-j-1];
+                }
+            }
+            if (flag){
+                arr[lastIndex] = buffer;
+            }
+                else{
+                    arr[0] = buffer;
+            }
+        }
+    }
 }
-
-
-
