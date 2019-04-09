@@ -58,7 +58,7 @@ public class Main {
     }
 
 
-    static int[] randomArray(int arrSize){
+   public static int[] randomArray(int arrSize){
         Random randomElement = new Random();
         int[] arr = new int[arrSize];
         for (int i = 0; i < arrSize; i++) {
@@ -66,7 +66,7 @@ public class Main {
         }
         return arr;
     }
-    static int[] bubleSort(int[] arr){
+   public static int[] bubleSort(int[] arr){
         for (int i = arr.length-1; i > 0 ; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j+1]){
