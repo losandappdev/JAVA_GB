@@ -22,8 +22,8 @@ public class Tic_tack_toe {
                 System.out.println("¡DRAW!");
                 break;
             }
-            aiStep();
-            //artificialIntelStep();
+            //aiStep();
+            artificialIntelStep();
             //printField();
             if (checkWin(AI_DOT)){
                 System.out.println("¡SkyNet WIN!");
@@ -186,33 +186,34 @@ public class Tic_tack_toe {
         return field[y][x] == EMPTY_DOT;
         }// Проверка ячейки.
 
-    public static void artificialIntelStep(){ // Искуственнвй интелект нкуспел.
+    public static void artificialIntelStep(){ // Искуственнвй интелект неуспел.
        for (int i = 0; i < SIZE_Y; i++) {
           for (int j = 0; j < SIZE_X; j++) {
-              System.out.print(checkWinHorizontal(i, j, PLAYER_DOT) + " ");
-              System.out.print(checkWinVertical(i, j,PLAYER_DOT ) + " ");
-              System.out.print(checkWinUpDiag(i, j,PLAYER_DOT) + " " );
-              System.out.print(checkWinDwnDiag(i, j, PLAYER_DOT) + " ");
-              System.out.println();
+//              System.out.println(checkWinHorizontal(i, j, PLAYER_DOT) + " ");
+              System.out.println(checkWinVertical(i, j,PLAYER_DOT ) + " ");
+//              System.out.print(checkWinUpDiag(i, j,PLAYER_DOT) + " " );
+//              System.out.print(checkWinDwnDiag(i, j, PLAYER_DOT) + " ");
+//              System.out.println();
+
 //              if (checkWinHorizontal(i, j, PLAYER_DOT) > 1){
-//                 if (isCellValid(i,j + checkWinHorizontal(i, j, PLAYER_DOT))){
-//                   setSym(i,j + checkWinHorizontal(i, j, PLAYER_DOT),AI_DOT);
+//                 if (isCellValid(i + checkWinHorizontal(i, j, PLAYER_DOT),j )){
+//                   setSym(i + checkWinHorizontal(i, j, PLAYER_DOT), j,AI_DOT);
 //                   printField();break;
 //                 }
-//                 else if (isCellValid(i,j-1)){
-//                    setSym(i,j-1,AI_DOT);
+//                 else if (isCellValid(i - 1,j)){
+//                    setSym(i - 1,j,AI_DOT);
 //                    printField();break;
-//                 }else aiStep();break;
+//                 }
 //              }
-//              if (checkWinVertical(i, j, PLAYER_DOT) > 1) {
-//                  if (isCellValid(i + checkWinVertical(i, j, PLAYER_DOT), j)) {
-//                      setSym(i + checkWinVertical(i, j, PLAYER_DOT), j, AI_DOT);
-//                      printField();break;
-//                  } else if (isCellValid(i - 1, j)) {
-//                      setSym(i - 1, j, AI_DOT);
-//                      printField();break;
-//                  }else aiStep();break;
-//              }
+              if (checkWinVertical(i, j, PLAYER_DOT) > 1) {
+                  if (isCellValid(i, j + checkWinVertical(i, j, PLAYER_DOT))) {
+                      setSym(i, j + checkWinVertical(i, j, PLAYER_DOT), AI_DOT);
+                      printField();break;
+                  } else if (isCellValid(i - 1, j)) {
+                      setSym(i - 1, j, AI_DOT);
+                      printField();break;
+                  }
+              }
 //                 if (checkWinDwnDiag(i, j, PLAYER_DOT) > 1) {
 //                     if (isCellValid(i + checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT))) {
 //                         setSym(i + checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT), AI_DOT);
