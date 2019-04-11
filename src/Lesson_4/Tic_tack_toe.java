@@ -1,5 +1,6 @@
 package Lesson_4;
 
+import java.lang.annotation.ElementType;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -169,9 +170,10 @@ public class Tic_tack_toe {
 
     public static int checkWinUpDiag(int i, int j,char sum){
         int counter = 0;
-        if (i > STEP_TO_WIN){
+        if (i > STEP_TO_WIN - 2){
             for (; j < STEP_TO_WIN; i--, j++ ) {
                 if (field[i][j] == sum) counter += 1;
+                 else break;
             }
         }
         return counter;
@@ -187,10 +189,11 @@ public class Tic_tack_toe {
     public static void artificialIntelStep(){ // Искуственнвй интелект нкуспел.
        for (int i = 0; i < SIZE_Y; i++) {
           for (int j = 0; j < SIZE_X; j++) {
-              System.out.println(checkWinHorizontal(i, j, PLAYER_DOT));
-              System.out.println(checkWinVertical(i, j,PLAYER_DOT ));
-              System.out.println(checkWinUpDiag(i, j,PLAYER_DOT) );
-              System.out.println(checkWinDwnDiag(i, j, PLAYER_DOT));
+              System.out.print(checkWinHorizontal(i, j, PLAYER_DOT) + " ");
+              System.out.print(checkWinVertical(i, j,PLAYER_DOT ) + " ");
+              System.out.print(checkWinUpDiag(i, j,PLAYER_DOT) + " " );
+              System.out.print(checkWinDwnDiag(i, j, PLAYER_DOT) + " ");
+              System.out.println();
 //              if (checkWinHorizontal(i, j, PLAYER_DOT) > 1){
 //                 if (isCellValid(i,j + checkWinHorizontal(i, j, PLAYER_DOT))){
 //                   setSym(i,j + checkWinHorizontal(i, j, PLAYER_DOT),AI_DOT);
@@ -228,12 +231,12 @@ public class Tic_tack_toe {
 //                         printField();break;
 //                     }else aiStep();break;
 //                 }
-                 if (checkWinHorizontal(i, j, PLAYER_DOT) == 1 &&  checkWinVertical(i, j,PLAYER_DOT )== 1
-                 && checkWinUpDiag(i, j,PLAYER_DOT) == 1 && checkWinDwnDiag(i, j, PLAYER_DOT) == 1){
-                     System.out.println();
-                     aiStep();
-                     break;
-                 }
+//                 if (checkWinHorizontal(i, j, PLAYER_DOT) == 1 &&  checkWinVertical(i, j,PLAYER_DOT )== 1
+//                 &&  checkWinDwnDiag(i, j, PLAYER_DOT) == 1){
+//                     System.out.println();
+//                     aiStep();
+//                     break;
+//                 }
           }
        }
     }// Искустверрый интелект не успел.
