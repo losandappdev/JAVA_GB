@@ -1,14 +1,7 @@
 package Lesson_4;
 
-import com.sun.source.tree.IfTree;
-
-import java.lang.reflect.Field;
-import java.text.FieldPosition;
-import java.util.FormatFlagsConversionMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-
-import jdk.nashorn.api.tree.GotoTree;
 
 public class Tic_tack_toe {
     public static void main (String[] args){
@@ -19,7 +12,7 @@ public class Tic_tack_toe {
         while (true){
 
             playerStep();
-            //printField();
+            printField();
             if (checkWin(PLAYER_DOT)){
                 System.out.println("¡Player WIN!");
                 break;
@@ -29,7 +22,8 @@ public class Tic_tack_toe {
                 break;
             }
             aiStep();
-            printField();
+            //artificialIntelStep();
+            //printField();
             if (checkWin(AI_DOT)){
                 System.out.println("¡SkyNet WIN!");
             }
@@ -38,7 +32,7 @@ public class Tic_tack_toe {
 
     }
 
-    static int STEP_TO_WIN = 4; // Количество символов, идущих подряд, необходимых для победы.
+    static int STEP_TO_WIN = 3; // Количество символов, идущих подряд, необходимых для победы.
     static int SIZE_X = 10;
     static int SIZE_Y = 10;
 
@@ -101,12 +95,13 @@ public class Tic_tack_toe {
     public static void aiStep(){  //Ход компьютера.
         int x,y;
         do {
-            //System.out.println("Ход компьютера");
             x = random.nextInt(SIZE_X);
             y = random.nextInt(SIZE_Y);
         }while (!isCellValid(x,y));
         setSym(x,y,AI_DOT);
+        printField();
     }// Ход компьютера.
+
     public static void setSym(int x, int y, char sym){ // Заполнение ячейки.
         field[y][x] = sym;
     } // Заполнение ячейки.
@@ -125,16 +120,16 @@ public class Tic_tack_toe {
     public static boolean checkWin(char sum){
       for (int i = 0; i < SIZE_Y; i++) {
         for (int j = 0; j < SIZE_X; j++) {
-            if (checkWinHorizontal(i, j, sum)) {
+            if (checkWinHorizontal(i, j, sum) == STEP_TO_WIN) {
                 printField(); return true;
             }
-            if (checkWinVertical(i, j, sum)) {
+            if (checkWinVertical(i, j, sum) == STEP_TO_WIN) {
                 printField(); return true;
             }
-            if (checkWinDwnDiag(i, j, sum)){
+            if (checkWinDwnDiag(i, j, sum) == STEP_TO_WIN){
                 printField(); return true;
             }
-            if (checkWinUpDiag(i, j, sum)){
+            if (checkWinUpDiag(i, j, sum) == STEP_TO_WIN){
                 printField(); return true;
             }
 
@@ -145,41 +140,41 @@ public class Tic_tack_toe {
       return false;
     }
 
-    public static boolean checkWinHorizontal(int i, int j,char sum){
+    public static int checkWinHorizontal(int i, int j,char sum){
         int counter = 0;
         for (;j < SIZE_X; j++) {
             if (sum == field[i][j]) counter += 1;
                 else break;
         }
-        return counter == STEP_TO_WIN;
+        return counter;
     }
 
-    public static boolean checkWinVertical(int i, int j,char sum){
+    public static int checkWinVertical(int i, int j,char sum){
         int counter = 0;
         for (; i < SIZE_Y; i++) {
             if (sum == field[i][j]) counter += 1;
                 else break;
         }
-        return counter == STEP_TO_WIN;
+        return counter;
     }
 
-    public static boolean checkWinDwnDiag(int i, int j,char sum){
+    public static int checkWinDwnDiag(int i, int j,char sum){
         int counter = 0;
         for (;i < SIZE_Y || j < SIZE_X ; i++, j++ ) {
                 if (field[i][j] == sum) counter += 1;
                     else break;
         }
-        return counter == STEP_TO_WIN ;
+        return counter;
     }
 
-    public static boolean checkWinUpDiag(int i, int j,char sum){
+    public static int checkWinUpDiag(int i, int j,char sum){
         int counter = 0;
         if (i > STEP_TO_WIN){
             for (; j < STEP_TO_WIN; i--, j++ ) {
                 if (field[i][j] == sum) counter += 1;
             }
         }
-        return counter == STEP_TO_WIN;
+        return counter;
     }
 
     public static boolean isCellValid(int x, int y) { //Проверка ячейки.
@@ -189,5 +184,61 @@ public class Tic_tack_toe {
         return field[y][x] == EMPTY_DOT;
         }// Проверка ячейки.
 
-
+    public static void artificialIntelStep(){ // Искуственнвй интелект нкуспел.
+       for (int i = 0; i < SIZE_Y; i++) {
+          for (int j = 0; j < SIZE_X; j++) {
+              System.out.println(checkWinHorizontal(i, j, PLAYER_DOT));
+              System.out.println(checkWinVertical(i, j,PLAYER_DOT ));
+              System.out.println(checkWinUpDiag(i, j,PLAYER_DOT) );
+              System.out.println(checkWinDwnDiag(i, j, PLAYER_DOT));
+//              if (checkWinHorizontal(i, j, PLAYER_DOT) > 1){
+//                 if (isCellValid(i,j + checkWinHorizontal(i, j, PLAYER_DOT))){
+//                   setSym(i,j + checkWinHorizontal(i, j, PLAYER_DOT),AI_DOT);
+//                   printField();break;
+//                 }
+//                 else if (isCellValid(i,j-1)){
+//                    setSym(i,j-1,AI_DOT);
+//                    printField();break;
+//                 }else aiStep();break;
+//              }
+//              if (checkWinVertical(i, j, PLAYER_DOT) > 1) {
+//                  if (isCellValid(i + checkWinVertical(i, j, PLAYER_DOT), j)) {
+//                      setSym(i + checkWinVertical(i, j, PLAYER_DOT), j, AI_DOT);
+//                      printField();break;
+//                  } else if (isCellValid(i - 1, j)) {
+//                      setSym(i - 1, j, AI_DOT);
+//                      printField();break;
+//                  }else aiStep();break;
+//              }
+//                 if (checkWinDwnDiag(i, j, PLAYER_DOT) > 1) {
+//                     if (isCellValid(i + checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT))) {
+//                         setSym(i + checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT), AI_DOT);
+//                         printField();break;
+//                     } else if (isCellValid(i - 1, j - 1)) {
+//                         setSym(i - 1, j - 1, AI_DOT);
+//                         printField();break;
+//                     }else aiStep();break;
+//                 }
+//                 if (checkWinUpDiag(i, j, PLAYER_DOT) > 1) {
+//                     if (isCellValid(i - checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT))) {
+//                         setSym(i - checkWinHorizontal(i, j, PLAYER_DOT), j + checkWinHorizontal(i, j, PLAYER_DOT), AI_DOT);
+//                         printField();break;
+//                     } else if (isCellValid(i + 1, j - 1)) {
+//                         setSym(i + 1, j - 1, AI_DOT);
+//                         printField();break;
+//                     }else aiStep();break;
+//                 }
+                 if (checkWinHorizontal(i, j, PLAYER_DOT) == 1 &&  checkWinVertical(i, j,PLAYER_DOT )== 1
+                 && checkWinUpDiag(i, j,PLAYER_DOT) == 1 && checkWinDwnDiag(i, j, PLAYER_DOT) == 1){
+                     System.out.println();
+                     aiStep();
+                     break;
+                 }
+          }
+       }
+    }// Искустверрый интелект не успел.
+//    Идея в том чтобы теми же методами что и проверка на выигрышь (которые возвращают количество
+//    одинаковых символов в заданном направлени) проверять поле на рябом стоящие
+//    символы игрока которых меньше чем STEP_TO_WIN, а затем до или после них ставить нолик
+//    в зависимости направления поверки и  вылидности ячейки.
 }
