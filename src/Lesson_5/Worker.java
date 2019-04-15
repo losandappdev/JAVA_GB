@@ -2,12 +2,12 @@ package Lesson_5;
 
 public class Worker {
 
-        String name;
-        String position;
-        String e_mail;
-        String tel_num;
-        int salary;
-        int age;
+       private String name;
+       private String position;
+       private String e_mail;
+       private String tel_num;
+       private int salary;
+       private int age;
 
         public Worker(String name, String position, String e_mail, String tel_num, int slary, int age) {
             this.name = name;
@@ -16,6 +16,9 @@ public class Worker {
             this.tel_num = tel_num;
             this.salary = slary;
             this.age = age;
+        }
+        int getAge(){
+            return age;
         }
 
         public void info(){
