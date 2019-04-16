@@ -12,7 +12,4 @@ public  class Cat extends Enimal {
         System.out.println("Meow");
     }
 
-
-
-
 }
