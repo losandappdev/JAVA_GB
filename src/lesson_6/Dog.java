@@ -4,7 +4,7 @@ package lesson_6;
 
 
 
-    private Dog(String name, String breed, int runLim, int swimLim, int jumpLim) {
+    Dog(String name, String breed, int runLim, int swimLim, int jumpLim) {
         super(name, breed, runLim, swimLim, jumpLim);
     }
 

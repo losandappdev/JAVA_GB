@@ -4,7 +4,7 @@ package lesson_6;
 
 
 
-    private Cat(String name, String breed, int runLim, int jumpLim) {
+    Cat(String name, String breed, int runLim, int jumpLim) {
         super(name, breed, runLim, jumpLim);
     }
 
