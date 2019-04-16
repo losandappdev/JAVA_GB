@@ -2,8 +2,6 @@ package lesson_6;
 
 import java.util.Random;
 
-import javax.sound.midi.Soundbank;
-
 public class MainAnimal {
     public static void main(String[] args){
 
@@ -29,17 +27,7 @@ public class MainAnimal {
         System.out.println(cats[5].getRunLim());
         cats[5].run(500);
 
-        System.out.println(cats[6].getName());
-
 }
-
-
-
-
-
-
-
-
 
     /**Заполнение массива cats элементами. */
 

@@ -12,15 +12,4 @@ public class Dog extends Enimal {
     void voice() {
         System.out.println("Gav");
     }
-
-
-//    void info() {
-//        System.out.println("Имя:       " + name);
-//        System.out.println("Порода:    " + breed );
-//        System.out.println("Бежит на   " + runLim + " m");
-//        System.out.println("Плывет на  " + swimLim + " m");
-//        System.out.println("Прыгает на " + jumpLim + " m");
-//    }
-
-
 }
