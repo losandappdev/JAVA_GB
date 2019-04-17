@@ -11,5 +11,4 @@ package lesson_6;
     void voice() {
         System.out.println("Meow");
     }
-
 }
