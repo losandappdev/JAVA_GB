@@ -25,11 +25,19 @@ public class Cat {
         this.name = name;
     }
 
+    public void setFull(boolean isFull) {
+        this.isFull = isFull;
+    }
+
     public int getAppetit() {
         return appetit;
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean getisFull() {
+        return isFull;
     }
 }
