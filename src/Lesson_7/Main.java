@@ -63,7 +63,7 @@ public static boolean needFood(Cat[] cats, Plate plate){
     }
     return false;
 }
-/** Кормит котов добавляя корм до тех пор пока все не будут сыты*/
+/** Кормит котов, добавляя корм до тех пор пока все не будут сыты*/
 public static void feedingCatsFull(Cat[] cats, Plate plate) {
 
          do {
