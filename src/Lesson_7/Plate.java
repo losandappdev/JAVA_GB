@@ -1,7 +1,5 @@
 package Lesson_7;
 
-import javax.sound.midi.Soundbank;
-
 public class Plate {
     private int food;
 

@@ -3,9 +3,13 @@ package Lesson_7;
 public class Cat {
     private int appetit;
     private String name;
+    private boolean isFull = false;
 
     public void eat(Plate p){
         p.deacreaceFood(appetit);
+    }
+    public void info(){
+        System.out.println("Cat " + name + " eats " + appetit + " g. of feed. Cat is full: " + isFull);
     }
 
     public Cat(int appetit, String name) {
